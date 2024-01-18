@@ -10,18 +10,24 @@
             android:label="fragment_1"
             tools:layout="@layout/fragment_1" />
     <fragment
-            android:id="@+id/log"
+            android:id="@+id/trending"
             android:name="io.ak1.bubbletabbarapp.ui.samples.childFragments.Fragment2"
             android:label="fragment_2"
             tools:layout="@layout/fragment_2" />
     <fragment
-            android:id="@+id/doc"
+            android:id="@+id/tv"
             android:name="io.ak1.bubbletabbarapp.ui.samples.childFragments.Fragment3"
             android:label="fragment_3"
             tools:layout="@layout/fragment_3" />
     <fragment
-            android:id="@+id/setting"
+            android:id="@+id/short_news"
             android:name="io.ak1.bubbletabbarapp.ui.samples.childFragments.Fragment4"
             android:label="fragment_4"
             tools:layout="@layout/fragment_4" />
+
+    <fragment
+            android:id="@+id/profile"
+            android:name="io.ak1.bubbletabbarapp.ui.samples.childFragments.Fragment5"
+            android:label="fragment_5"
+            tools:layout="@layout/fragment_5" />
 </navigation>

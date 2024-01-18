@@ -3,18 +3,18 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/documents"
-        tools:viewBindingIgnore="true"
+        android:background="@android:color/black"
         tools:context=".ui.samples.childFragments.Fragment3"
-        tools:ignore="Overdraw">
+        tools:ignore="Overdraw"
+        tools:viewBindingIgnore="true">
 
     <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:text="@string/tv"
             android:textColor="@color/background"
-            android:text="@string/documents"
             android:textSize="50sp" />
 
 </FrameLayout>

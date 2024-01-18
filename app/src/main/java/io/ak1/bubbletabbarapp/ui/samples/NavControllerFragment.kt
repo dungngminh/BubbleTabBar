@@ -27,11 +27,15 @@ class NavControllerFragment : Fragment() {
         val navHostFragment = childFragmentManager
             .findFragmentById(R.id.inner_host_nav) as NavHostFragment
         val navController = navHostFragment.navController
-        binding.bubbleTabBar.addBubbleListener { id ->
+
+        binding.bubbleTabBar.setOnBubbleClickListener { id ->
             onNavDestinationSelected(id, navController)
         }
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bubbleTabBar.setSelectedWithId(destination.id, false)
+        binding.bubbleTabBar.setOnBubbleReselectedListener {
+            navController.popBackStack(
+                destinationId = navController.graph.startDestinationId,
+                inclusive = false
+            )
         }
     }
 

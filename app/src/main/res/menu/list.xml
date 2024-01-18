@@ -3,26 +3,24 @@
 
     <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_grid"
-            android:title="@string/home"
             android:checked="true"
-            android:color="@color/home" />
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+    <item
+            android:id="@+id/trending"
+            android:icon="@drawable/ic_trending"
+            android:title="@string/trending" />
+    <item
+            android:id="@+id/tv"
+            android:icon="@drawable/ic_tv"
+            android:title="@string/tv" />
 
     <item
-            android:id="@+id/log"
-            android:icon="@drawable/ic_clock"
-            android:title="@string/logger"
-            android:color="@color/logger" />
+            android:id="@+id/short_news"
+            android:icon="@drawable/ic_short"
+            android:title="@string/short_news"/>
     <item
-            android:id="@+id/doc"
-            android:icon="@drawable/ic_folder"
-            android:color="@color/documents"
-            android:title="@string/documents" />
-
-    <item
-            android:id="@+id/setting"
-            android:icon="@drawable/ic_android_black_24dp_rotated"
-            android:color="@color/settings"
-            android:title="@string/settings" />
-
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_account"
+            android:title="@string/account"/>
 </menu>

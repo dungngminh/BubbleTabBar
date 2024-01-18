@@ -14,9 +14,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.graphics.drawable.DrawableCompat
+import io.ak1.parser.BubbleMenuItem
 
 
-const val ICON_STATE_ANIMATOR_DURATION: Long = 350
+const val ICON_STATE_ANIMATOR_DURATION: Long = 250
+const val DURATION = 250L
+const val ALPHA = 0.1f
 
 internal fun ImageView.colorAnimator(
     @ColorInt from: Int,
@@ -51,12 +54,17 @@ internal fun ImageView.setColorStateListAnimator(
     refreshDrawableState()
 }
 
-
-var DURATION = 350L
-var ALPHA = 0.15f
-internal fun TextView.expand(container: LinearLayout, iconColor: Int, cornerRadius: Float) {
+internal fun TextView.expand(container: LinearLayout, item: BubbleMenuItem) {
     val bounds = Rect()
-    container.setCustomBackground(iconColor, ALPHA, cornerRadius)
+    container.run {
+        setCustomBackground(
+            item.containerColor,
+            ALPHA,
+            item.cornerRadius,
+            item.borderWidth.toInt(),
+            item.borderColor
+        )
+    }
     paint.apply {
         getTextBounds(text.toString(), 0, text.length, bounds)
         ValueAnimator.ofInt(0, bounds.width() + paddingStart + 10).apply {
@@ -65,7 +73,7 @@ internal fun TextView.expand(container: LinearLayout, iconColor: Int, cornerRadi
                     visibility = View.INVISIBLE
                 }
                 layoutParams.apply {
-                    width = it.animatedValue as Int
+                    width = it.animatedValue as? Int ?: 0
                 }
 
                 if (it.animatedFraction == (1.0f)) {
@@ -83,8 +91,7 @@ internal fun TextView.expand(container: LinearLayout, iconColor: Int, cornerRadi
 
 internal fun TextView.collapse(
     container: LinearLayout,
-    iconColor: Int,
-    cornerRadius: Float
+    item: BubbleMenuItem
 ) {
     animate().alpha(0f).apply {
         setUpdateListener {
@@ -98,9 +105,11 @@ internal fun TextView.collapse(
             interpolator = LinearInterpolator()
             duration = DURATION
             container.setCustomBackground(
-                iconColor,
+                item.containerColor,
                 ALPHA - (ALPHA * it.animatedFraction),
-                cornerRadius
+                cornerRadius = item.cornerRadius,
+                borderWidth = item.borderWidth.toInt(),
+                borderColor = item.borderColor,
             )
             requestLayout()
         }
@@ -108,7 +117,13 @@ internal fun TextView.collapse(
 
 }
 
-internal fun LinearLayout.setCustomBackground(color: Int, alpha: Float, cornerRadius: Float) {
+internal fun LinearLayout.setCustomBackground(
+    color: Int,
+    alpha: Float,
+    cornerRadius: Float,
+    borderWidth: Int,
+    borderColor: Int
+) {
     val containerBackground = GradientDrawable().apply {
         this.cornerRadius = cornerRadius
         DrawableCompat.setTint(
@@ -119,6 +134,7 @@ internal fun LinearLayout.setCustomBackground(color: Int, alpha: Float, cornerRa
                 Color.blue(color)
             )
         )
+        setStroke(borderWidth, borderColor)
     }
     background = containerBackground
 }

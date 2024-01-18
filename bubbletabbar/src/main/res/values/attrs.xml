@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="BubbleTabBar">
-        <attr name="bubbletab_menuResource" format="reference"/>
-        <attr name="bubbletab_disabled_icon_color" format="color" />
-        <attr name="bubbletab_custom_font" format="reference" />
-        <attr name="bubbletab_horizontal_padding" format="dimension" />
-        <attr name="bubbletab_icon_padding" format="dimension" />
-        <attr name="bubbletab_vertical_padding" format="dimension" />
-        <attr name="bubbletab_icon_size" format="dimension" />
-        <attr name="bubbletab_title_size" format="dimension" />
-        <attr name="bubbletab_tab_corner_radius" format="dimension" />
+        <attr name="menu" format="reference"/>
+        <attr name="icon_color" format="color" />
+        <attr name="disabled_icon_color" format="color" />
+        <attr name="custom_font" format="reference" />
+        <attr name="horizontal_padding" format="dimension" />
+        <attr name="gap" format="dimension" />
+        <attr name="vertical_padding" format="dimension" />
+        <attr name="icon_size" format="dimension" />
+        <attr name="title_size" format="dimension" />
+        <attr name="tab_corner_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="container_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="Bubble">
@@ -18,6 +22,5 @@
         <attr name="android:icon"/>
         <attr name="android:enabled"/>
         <attr name="android:checked"/>
-        <attr name="android:color" format="color" />
     </declare-styleable>
 </resources>

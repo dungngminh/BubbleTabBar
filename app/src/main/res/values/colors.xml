@@ -6,4 +6,6 @@
     <color name="background">#ffffff</color>
     <color name="light_background">#f4f4f4</color>
     <color name="invert">#202020</color>
+    <color name="bottom_nav_bar_background">#CC26262C</color>
+
 </resources>

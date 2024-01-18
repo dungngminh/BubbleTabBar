@@ -7,4 +7,10 @@
     <color name="logger">#673AB7</color>
     <color name="documents">#3498db</color>
     <color name="settings">#2ecc71</color>
+    <color name="profile">#f1c40f</color>
+
+    <color name="white_cultured_4">#0AF4F4F8</color>
+    <color name="white_cultured_10">#1AF4F4F8</color>
+    <color name="white_cultured">#F4F4F8</color>
+    <color name="silver_sonic">#76767F</color>
 </resources>

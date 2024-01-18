@@ -33,13 +33,13 @@ class ViewPagerFragment : Fragment() {
         binding.bubbleTabBar.setupViewPager(binding.viewpager)
 
 
-        binding.bubbleTabBar.addBubbleListener { id ->
-            when (id) {
-                R.id.home -> binding.viewpager.currentItem = 0
-                R.id.log -> binding.viewpager.currentItem = 1
-                R.id.doc -> binding.viewpager.currentItem = 2
-                R.id.setting -> binding.viewpager.currentItem = 3
-            }
-        }
+//        binding.bubbleTabBar.addBubbleListener { id ->
+//            when (id) {
+//                R.id.home -> binding.viewpager.currentItem = 0
+//                R.id.trending -> binding.viewpager.currentItem = 1
+//                R.id.doc -> binding.viewpager.currentItem = 2
+//                R.id.setting -> binding.viewpager.currentItem = 3
+//            }
+//        }
     }
 }

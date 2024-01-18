@@ -11,13 +11,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
-import io.ak1.parser.MenuItem
+import io.ak1.parser.BubbleMenuItem
 import io.ak1.util.collapse
 import io.ak1.util.expand
 import io.ak1.util.setColorStateListAnimator
 
 @SuppressLint("ViewConstructor")
-class Bubble(context: Context, private var item: MenuItem) : FrameLayout(context) {
+class Bubble(context: Context, val item: BubbleMenuItem) : FrameLayout(context) {
 
     private var icon = ImageView(context)
     private var title = TextView(context)
@@ -26,7 +26,7 @@ class Bubble(context: Context, private var item: MenuItem) : FrameLayout(context
     private val dpAsPixels = item.horizontalPadding.toInt()
     private val dpAsPixelsVertical = item.verticalPadding.toInt()
     private val dpAsPixelsIcons = item.iconSize.toInt()
-    private val dpAsIconPadding = item.iconPadding.toInt()
+    private val dpAsGap = item.gap.toInt()
 
     init {
         id = item.id
@@ -66,11 +66,10 @@ class Bubble(context: Context, private var item: MenuItem) : FrameLayout(context
         title.apply {
             layoutParams =
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
-                    setPaddingRelative(dpAsIconPadding, 0, 0, 0)
+                    setPaddingRelative(dpAsGap, 0, 0, 0)
                     gravity = Gravity.CENTER_VERTICAL
                     textAlignment = View.TEXT_ALIGNMENT_GRAVITY
                 }
-
             maxLines = 1
             textSize = item.titleSize / resources.displayMetrics.scaledDensity
             visibility = View.GONE
@@ -78,7 +77,7 @@ class Bubble(context: Context, private var item: MenuItem) : FrameLayout(context
                 try {
                     typeface = ResourcesCompat.getFont(context, item.customFont)
                 } catch (e: Exception) {
-                    Log.e("BubbleTabBar", "Could not get typeface: " + e.message)
+                    Log.d("BottomNavigationBar", "--> Could not get typeface: ${e.message}")
                 }
             }
             text = item.title
@@ -104,9 +103,9 @@ class Bubble(context: Context, private var item: MenuItem) : FrameLayout(context
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)
         if (selected) {
-            title.expand(container, item.iconColor, item.cornerRadius)
+            title.expand(container, item)
         } else {
-            title.collapse(container, item.iconColor, item.cornerRadius)
+            title.collapse(container, item)
         }
     }
 

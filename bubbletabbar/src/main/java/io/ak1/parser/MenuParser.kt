@@ -3,7 +3,6 @@ package io.ak1.parser
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.XmlResourceParser
-import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Xml
 import androidx.annotation.MenuRes
@@ -17,7 +16,7 @@ internal class MenuParser(private val context: Context) {
         const val XML_MENU_ITEM_TAG = "item"
     }
 
-    fun parse(@MenuRes menuRes: Int): List<MenuItem> {
+    fun parse(@MenuRes menuRes: Int): List<BubbleMenuItem> {
         @SuppressLint("ResourceType")
         val parser = context.resources.getLayout(menuRes)
         val attrs = Xml.asAttributeSet(parser)
@@ -39,8 +38,8 @@ internal class MenuParser(private val context: Context) {
         } while (currentEvent != END_DOCUMENT)
     }
 
-    private fun parseMenu(parser: XmlResourceParser, attrs: AttributeSet): List<MenuItem> {
-        val items = mutableListOf<MenuItem>()
+    private fun parseMenu(parser: XmlResourceParser, attrs: AttributeSet): List<BubbleMenuItem> {
+        val items = mutableListOf<BubbleMenuItem>()
         var eventType = parser.eventType
         var isEndOfMenu = false
 
@@ -53,6 +52,7 @@ internal class MenuParser(private val context: Context) {
                         item
                     )
                 }
+
                 eventType == END_TAG && name == XML_MENU_TAG -> isEndOfMenu = true
                 eventType == END_DOCUMENT -> throw NullPointerException("Unexpected end of document")
 
@@ -62,16 +62,15 @@ internal class MenuParser(private val context: Context) {
         return items
     }
 
-    private fun parseMenuItem(attrs: AttributeSet): MenuItem {
+    private fun parseMenuItem(attrs: AttributeSet): BubbleMenuItem {
         val sAttr = context.obtainStyledAttributes(attrs, R.styleable.Bubble)
 
-        val item = MenuItem(
+        val item = BubbleMenuItem(
             id = sAttr.getResourceId(R.styleable.Bubble_android_id, 0),
             title = sAttr.getText(R.styleable.Bubble_android_title),
             icon = sAttr.getResourceId(R.styleable.Bubble_android_icon, 0),
             enabled = sAttr.getBoolean(R.styleable.Bubble_android_enabled, true),
             checked = sAttr.getBoolean(R.styleable.Bubble_android_checked, false),
-            iconColor = sAttr.getColor(R.styleable.Bubble_android_color, Color.RED)
         )
 
         sAttr.recycle()
